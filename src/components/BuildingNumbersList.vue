@@ -105,12 +105,11 @@ export default {
         const end = start+this.limit
         const url = `http://localhost:3000/building-numbers?start=${start}&end=${end}`
         console.log(url)
-        axios.get(url)
-            .then((response)=>{
-              this.buildingNumbers = response.data.buildingNumbers
-              this.total =  response.data.total
-              this.totalPages = Math.floor(this.total/this.limit)
-            })
+        const response = await axios.get(url)
+        this.buildingNumbers = response.data.buildingNumbers
+        this.total =  response.data.total
+        this.totalPages = Math.floor(this.total/this.limit)
+
       }catch (e) {
         console.log(e)
         alert("Сталася помилка при заватаженні номерів будинків")
