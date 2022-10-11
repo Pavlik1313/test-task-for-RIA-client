@@ -1,7 +1,9 @@
 <template>
   <div class="block" v-bind:class="className">
+
     <div class="number">{{buildingNumber}}</div>
     <div class="explanation">{{ explanation }}</div>
+
   </div>
 </template>
 
@@ -9,6 +11,12 @@
 import {buildingNumberIsValid, getExplanation} from "@/helpers/validator";
 export default {
   name: "BuildingNumberBlock",
+  props: {
+    buildingNumber: {
+      type: String,
+      required: true
+    }
+  },
   data(){
     return {
       explanation: '-',
@@ -21,12 +29,6 @@ export default {
     else {
       this.explanation = getExplanation(this.buildingNumber)
       this.className = 'invalid'
-    }
-  },
-  props: {
-    buildingNumber: {
-      type: String,
-      required: true
     }
   }
 }
